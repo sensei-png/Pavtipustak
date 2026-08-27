@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pavti Pustak — रसीद बही</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="binder">
+
+  <header class="masthead">
+    <div class="stamp-mark" id="headerStamp">
+      <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54"/><text x="60" y="55" text-anchor="middle">पावती</text><text x="60" y="75" text-anchor="middle">PUSTAK</text></svg>
+    </div>
+    <div class="masthead-text">
+      <h1>Pavti&nbsp;Pustak</h1>
+      <p class="subtitle">पावती पुस्तक &middot; the digital receipt book</p>
+    </div>
+    <div class="serial-box">
+      <span class="serial-label">Book No.</span>
+      <span class="serial-value" id="bookNo">01</span>
+    </div>
+  </header>
+
+  <div class="workspace">
+
+    <!-- LEFT: the leaf being written -->
+    <section class="leaf" aria-label="Write a new receipt">
+      <div class="perforation" aria-hidden="true"></div>
+
+      <form id="receiptForm" class="leaf-form">
+        <div class="leaf-row leaf-row--top">
+          <div class="field field--no">
+            <label for="recNo">No.</label>
+            <input type="text" id="recNo" readonly>
+          </div>
+          <div class="field field--date">
+            <label for="recDate">Date</label>
+            <input type="date" id="recDate" required>
+          </div>
+        </div>
+
+        <div class="field field--wide">
+          <label for="recFrom">Received with thanks from</label>
+          <input type="text" id="recFrom" placeholder="नाम / Name" required>
+        </div>
+
+        <div class="field field--wide">
+          <label for="recFor">The sum of rupees</label>
+          <input type="text" id="recWords" placeholder="e.g. Two thousand five hundred only" required>
+        </div>
+
+        <div class="leaf-row">
+          <div class="field field--amount">
+            <label for="recAmount">₹ Amount</label>
+            <input type="number" id="recAmount" min="0" step="0.01" placeholder="0.00" required>
+          </div>
+          <div class="field field--mode">
+            <label for="recMode">Mode</label>
+            <select id="recMode">
+              <option>Cash</option>
+              <option>UPI</option>
+              <option>Cheque</option>
+              <option>Bank Transfer</option>
+              <option>Card</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field field--wide">
+          <label for="recPurpose">Being payment towards</label>
+          <input type="text" id="recPurpose" placeholder="विवरण / Particulars">
+        </div>
+
+        <div class="leaf-actions">
+          <button type="submit" class="btn-tear">Tear off &amp; Save Receipt</button>
+          <button type="button" class="btn-print" id="printBtn">Print current leaf</button>
+        </div>
+      </form>
+
+      <div class="signature-line">
+        <span class="rupee-symbol-mark">₹</span>
+        <span class="sign-label">Signature</span>
+      </div>
+    </section>
+
+    <!-- RIGHT: the stub / carbon-copy ledger -->
+    <section class="stub" aria-label="Receipt history">
+      <div class="stub-head">
+        <h2>Counterfoil <span class="stub-head-sub">— duplicate copies retained</span></h2>
+        <button id="clearAll" class="btn-clear" title="Clear all saved receipts">Clear book</button>
+      </div>
+      <div id="ledgerList" class="ledger-list">
+        <p class="empty-note">No leaves torn off yet. Your first pavti will appear here as a carbon copy.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="colophon">
+    <p>Every entry is kept only in this browser's storage — nothing leaves your device.</p>
+  </footer>
+</div>
+
+<div class="print-only" id="printArea"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
